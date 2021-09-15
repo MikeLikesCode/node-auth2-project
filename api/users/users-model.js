@@ -8,7 +8,7 @@ async function find() {
 
 async function findBy(filter) {
   return await db('roles as r')
-  .select('user_id', 'username', 'role_name')
+  .select('user_id', 'username', 'role_name', 'password')
   .join('users as u', 'r.role_id', '=', 'u.role_id')
   .where(filter)
 }
@@ -18,6 +18,7 @@ async function findById(user_id) {
   .select('user_id', 'username', 'role_name')
   .join('users as u', 'r.role_id', '=', 'u.role_id')
   .where('user_id', user_id)
+  .first();
 }
 
 /**
